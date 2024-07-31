@@ -2,8 +2,7 @@ import { db } from '../drizzle/db.js';
 import { City, Clinic, Suburb } from '../drizzle/schema.js';
 import { eq, like, and, sql } from 'drizzle-orm';
 
-const GOOGLE_API_KEY = 'AIzaSyB-LKr0fSOI3RITm8piaolqnS1hrI788c4';
-//AIzaSyB-LKr0fSOI3RITm8piaolqnS1hrI788c4
+
 async function fetchCoordinates(address: string) {
   const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${GOOGLE_API_KEY}`);
   const data = await response.json();
