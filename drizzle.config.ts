@@ -10,6 +10,6 @@ export default defineConfig({
   verbose: true,
   strict: true,
   dbCredentials: {
-    url: 'D:/JS_workDev/Clinics/Clinics.db',
+    url: 'src/data/Clinics.db',
   }
 });

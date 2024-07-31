@@ -1,4 +1,4 @@
-import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, real } from 'drizzle-orm/sqlite-core';
 
 export const City = sqliteTable('cities', {
     citySlug: text('city_slug').primaryKey(),
@@ -13,6 +13,8 @@ export const City = sqliteTable('cities', {
     tick2: text('tick_2'),
     tick3: text('tick_3'),
     aboutBookphysio: text('about_bookphysio'),
+    latitude: real('latitude'), 
+    longitude: real('longitude'),
 });
 
 export const Clinic = sqliteTable('clinics', {
@@ -42,6 +44,8 @@ export const Clinic = sqliteTable('clinics', {
     nearby4Txt: text('nearby4_txt'),
     nearby4Link: text('nearby4_link'),
     aboutClinic: text('about_clinic'),
+    latitude: real('latitude'), 
+    longitude: real('longitude'),
 });
 
 export const Suburb = sqliteTable('suburbs', {
@@ -71,4 +75,6 @@ export const Suburb = sqliteTable('suburbs', {
     nearby4Txt: text('nearby4_txt'),
     nearby4State: text('nearby4_state'),
     nearby4Postcode: text('nearby4_postcode'),
+    latitude: real('latitude'), 
+    longitude: real('longitude'),
 });

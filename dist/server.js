@@ -1,12 +1,20 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import { drizzle } from 'drizzle-orm/better-sqlite3';
-import Database from 'better-sqlite3';
+import { ClinicsController } from './controllers/ClinicsController.js';
+import { graphqlHTTP } from 'express-graphql';
+import { schema } from './GraphQL/schema.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-const sqlite = new Database('Clinics.db');
-const db = drizzle(sqlite);
+const clinicsController = new ClinicsController();
+app.use(bodyParser.json());
+app.get('/clinics', (req, res) => clinicsController.searchClinics(req, res));
+app.get('/clinic/:clinicName', (req, res) => clinicsController.findClinicByName(req, res));
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: true, // Enable GraphiQL UI for testing
+}));
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
