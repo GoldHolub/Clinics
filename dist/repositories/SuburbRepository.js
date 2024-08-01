@@ -2,7 +2,7 @@ import { db } from "../drizzle/db.js";
 import { eq } from 'drizzle-orm';
 import { Suburb } from "../drizzle/schema.js";
 export class SuburbRepository {
-    async findClinicByName(suburbName) {
+    async findSuburbByName(suburbName) {
         try {
             const query = db
                 .select()

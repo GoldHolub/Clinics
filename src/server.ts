@@ -12,7 +12,7 @@ const clinicsController = new ClinicsController();
 
 app.use(bodyParser.json());
 app.get('/clinics', (req, res) => clinicsController.searchClinics(req, res));
-app.get('/clinic/:clinicName', (req, res) => clinicsController.findClinicByName(req, res));
+app.get('/clinic/:clinicName', (req, res) => clinicsController.findClinicBySlug(req, res));
 app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true, // Enable GraphiQL UI for testing

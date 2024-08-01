@@ -23,11 +23,11 @@ const QueryType = new GraphQLObjectType({
             type: new GraphQLList(SuburbType),
             resolve: () => db.select().from(Suburb),
         },
-        getClinicByName: {
+        getClinicBySlug: {
             type: new GraphQLList(ClinicType),
-            args: { clinicName: { type: GraphQLString } },
+            args: { slug: { type: GraphQLString } },
             resolve(parent, args) {
-                return clinicsRepository.findClinicByName(args.clinicName);
+                return clinicsRepository.findClinicBySlug(args.slug);
             }
         },
         searchClinics: {
@@ -49,7 +49,7 @@ const QueryType = new GraphQLObjectType({
             args: { cityName: { type: GraphQLString } },
             resolve(parent, args) {
                 const { cityName } = args;
-                return cityRepository.findClinicByName(cityName);
+                return cityRepository.findCityByName(cityName);
             }
         },
         getSuburbByName: {
@@ -57,7 +57,7 @@ const QueryType = new GraphQLObjectType({
             args: { suburbName: { type: GraphQLString } },
             resolve(parent, args) {
                 const { suburbName } = args;
-                return suburbRepository.findClinicByName(suburbName);
+                return suburbRepository.findSuburbByName(suburbName);
             }
         }
     },

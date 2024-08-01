@@ -1,7 +1,8 @@
 import { db } from '../drizzle/db.js';
 import { City, Clinic, Suburb } from '../drizzle/schema.js';
-const GOOGLE_API_KEY = 'AIzaSyB-LKr0fSOI3RITm8piaolqnS1hrI788c4';
-//AIzaSyB-LKr0fSOI3RITm8piaolqnS1hrI788c4
+import dotenv from 'dotenv';
+dotenv.config();
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 async function fetchCoordinates(address) {
     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${GOOGLE_API_KEY}`);
     const data = await response.json();

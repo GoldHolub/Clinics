@@ -12,7 +12,7 @@ export class ClinicsService {
         return clinics.map((clinic) => new ClinicDTO(clinic));
     }
 
-    async findClinicByName(clinicName: string) {
-        return await this.clinicsRepository.findClinicByName(clinicName);
+    async findClinicBySlug(clinicSlug: string) {
+        return await this.clinicsRepository.findClinicBySlug(clinicSlug);
     }
 }

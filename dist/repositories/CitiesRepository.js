@@ -2,7 +2,7 @@ import { db } from "../drizzle/db.js";
 import { eq } from 'drizzle-orm';
 import { City } from "../drizzle/schema.js";
 export class CityRepository {
-    async findClinicByName(cityName) {
+    async findCityByName(cityName) {
         try {
             const query = db
                 .select()

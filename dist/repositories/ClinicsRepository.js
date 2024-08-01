@@ -28,18 +28,18 @@ export class ClinicsRepository {
             throw new Error(`Can't find clinics in DB by params: ${params}`);
         }
     }
-    async findClinicByName(clinicName) {
+    async findClinicBySlug(clinicSlug) {
         try {
             const query = db
                 .select()
                 .from(Clinic)
-                .where(eq(Clinic.clinicName, clinicName))
+                .where(eq(Clinic.slug, clinicSlug))
                 .limit(1);
-            const clinics = await query;
-            return clinics;
+            const clinic = await query;
+            return clinic;
         }
         catch (error) {
-            throw new Error(`Can't find clinic in DB by name: ${clinicName}`);
+            throw new Error(`Can't find clinic in DB by name: ${clinicSlug}`);
         }
     }
 }

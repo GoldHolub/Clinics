@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 const clinicsController = new ClinicsController();
 app.get('/clinics/search', (req, res) => clinicsController.searchClinics(req, res));
-app.get('/clinics/:clinicName', (req, res) => clinicsController.findClinicByName(req, res));
+app.get('/clinics/:clinicName', (req, res) => clinicsController.findClinicBySlug(req, res));
 describe('ClinicsController', () => {
     beforeEach(() => {
         jest.clearAllMocks();
@@ -34,14 +34,14 @@ describe('ClinicsController', () => {
     describe('findClinicByName', () => {
         it('should return 200 and the clinic for a valid name', async () => {
             const mockClinic = { id: 1, clinicName: 'Clinic A' };
-            ClinicsService.prototype.findClinicByName.mockResolvedValue(mockClinic);
+            ClinicsService.prototype.findClinicBySlug.mockResolvedValue(mockClinic);
             const res = await request(app).get('/clinics/Clinic A');
             expect(res.status).toBe(200);
             expect(res.body).toEqual(mockClinic);
-            expect(ClinicsService.prototype.findClinicByName).toHaveBeenCalledWith('Clinic A');
+            expect(ClinicsService.prototype.findClinicBySlug).toHaveBeenCalledWith('Clinic A');
         });
         it('should return 500 if finding the clinic fails', async () => {
-            ClinicsService.prototype.findClinicByName.mockRejectedValue(new Error('Failed to find clinic'));
+            ClinicsService.prototype.findClinicBySlug.mockRejectedValue(new Error('Failed to find clinic'));
             const res = await request(app).get('/clinics/Clinic A');
             expect(res.status).toBe(500);
             expect(res.body).toEqual({ error: 'Failed to find clinic. Error: Failed to find clinic' });

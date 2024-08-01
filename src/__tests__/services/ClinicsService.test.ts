@@ -100,23 +100,23 @@ describe('ClinicsService', () => {
 
     describe('findClinicByName', () => {
         it('should return the clinic when a valid name is provided', async () => {
-            mockClinicsRepository.findClinicByName.mockResolvedValue(mockClinics);
+            mockClinicsRepository.findClinicBySlug.mockResolvedValue(mockClinics);
 
             const clinicName = 'Clinic A';
-            const result = await clinicsService.findClinicByName(clinicName);
+            const result = await clinicsService.findClinicBySlug(clinicName);
 
             expect(result[0]).toEqual(mockClinics[0]);
-            expect(mockClinicsRepository.findClinicByName).toHaveBeenCalledWith(clinicName);
+            expect(mockClinicsRepository.findClinicBySlug).toHaveBeenCalledWith(clinicName);
         });
 
         it('should handle case when no clinic is found by name', async () => {
-            mockClinicsRepository.findClinicByName.mockResolvedValue([]);
+            mockClinicsRepository.findClinicBySlug.mockResolvedValue([]);
 
             const clinicName = 'Nonexistent Clinic';
-            const result = await clinicsService.findClinicByName(clinicName);
+            const result = await clinicsService.findClinicBySlug(clinicName);
 
             expect(result).toEqual([]);
-            expect(mockClinicsRepository.findClinicByName).toHaveBeenCalledWith(clinicName);
+            expect(mockClinicsRepository.findClinicBySlug).toHaveBeenCalledWith(clinicName);
         });
     });
 });

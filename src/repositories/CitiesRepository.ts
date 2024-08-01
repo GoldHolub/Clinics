@@ -4,7 +4,7 @@ import { City } from "../drizzle/schema.js";
 import { CityType } from "../drizzle/DrizzleTypes.js";
 
 export class CityRepository {
-    async findClinicByName(cityName: string): Promise<CityType[]> {
+    async findCityByName(cityName: string): Promise<CityType[]> {
         try {
             const query = db
                 .select()

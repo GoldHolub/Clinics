@@ -25,10 +25,10 @@ export class ClinicsController {
     }
   }
 
-  async findClinicByName(req: Request, res: Response) {
-    const { clinicName } = req.params;
+  async findClinicBySlug(req: Request, res: Response) {
+    const { slug } = req.params;
     try {
-      const clinic = await this.clinicsService.findClinicByName(clinicName as string);
+      const clinic = await this.clinicsService.findClinicBySlug(slug as string);
       res.status(200).json(clinic);
     } catch(error) {
       res.status(500).json({ error: `Failed to find clinic. ${error}` });

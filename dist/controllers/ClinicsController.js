@@ -21,10 +21,10 @@ export class ClinicsController {
             res.status(500).json({ error: 'Failed to fetch clinics' });
         }
     }
-    async findClinicByName(req, res) {
-        const { clinicName } = req.params;
+    async findClinicBySlug(req, res) {
+        const { slug } = req.params;
         try {
-            const clinic = await this.clinicsService.findClinicByName(clinicName);
+            const clinic = await this.clinicsService.findClinicBySlug(slug);
             res.status(200).json(clinic);
         }
         catch (error) {
